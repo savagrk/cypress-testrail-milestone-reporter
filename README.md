@@ -9,7 +9,7 @@ Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 ## Install
 
 ```shell
-$ npm install cypress-testrail-reporter --save-dev
+$ npm install cypress-testrail-reporter-screenshot --save-dev
 ```
 
 ## Usage
@@ -18,13 +18,16 @@ Add reporter to your `cypress.json`:
 
 ```json
 ...
-"reporter": "cypress-testrail-reporter",
+"reporter": "cypress-testrail-reporter-screenshot",
 "reporterOptions": {
   "domain": "yourdomain.testrail.com",
   "username": "username",
   "password": "password",
-  "projectId": 1,
-  "suiteId": 1,
+  "projectId": "idNumber",
+  "createTestRun": "boolean",
+  "suiteId": "suiteNumber",
+  "runName": "testRunName",
+  "runId": "testRunNumber"
 }
 ```
 
@@ -50,9 +53,14 @@ it("Can authenticate a valid userC123", ...
 
 **projectId**: _number_ project with which the tests are associated.
 
-**suiteId**: _number_ suite with which the tests are associated.
+**createTestRun**: _boolean_ - **true** if you want to create a new Test Run,
+                             - **false** if you only update results to existed Test Run.
 
-**runName**: _string_ (optional) name of the Testrail run.
+**suiteId**: _number_ (optional: required when TestRail project uses multiple test suites to manage cases) suite with which the tests are associated.
+
+**runName**: _string_ (optional: required when **createTestRun** = **true**) name of the Testrail run.
+
+**runId**: _number_ (optional: required when **createTestRun** = **false**) Test Run id.
 
 ## TestRail Settings
 
@@ -66,7 +74,7 @@ You can read the whole TestRail documentation [here](http://docs.gurock.com/).
 
 ## Author
 
-Milutin Savovic - [github](https://github.com/mickosav)
+Sava Grkovic - [github](https://github.com/savagrk)
 
 ## License
 
@@ -74,5 +82,7 @@ This project is licensed under the [MIT license](/LICENSE.md).
 
 ## Acknowledgments
 
+* [Milutin Savovic](https://github.com/mickosav), author of the [cypress-testrail-reporter](https://github.com/Vivify-Ideas/cypress-testrail-reporter) repository that was forked.
+* [NGUYEN Viet](https://github.com/vietnq254), author of the [hanoi-cypress-testrail-reporter](https://github.com/vietnq254/hanoi-cypress-testrail-reporter) repository that was cloned.
 * [Pierre Awaragi](https://github.com/awaragi), owner of the [mocha-testrail-reporter](https://github.com/awaragi/mocha-testrail-reporter) repository that was forked.
 * [Valerie Thoma](https://github.com/ValerieThoma) and [Aileen Santos](https://github.com/asantos3026) for proofreading the README.md file and making it more understandable.

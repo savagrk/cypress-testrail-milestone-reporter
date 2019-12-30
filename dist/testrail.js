@@ -25,7 +25,8 @@ var TestRail = /** @class */ (function () {
             }),
         })
             .then(function (response) {
-            _this.runId = response.data.id;
+                console.log('Creating test run... ---> run id is:  ', response.data.id);
+                _this.runId = response.data.id;
         })
             .catch(function (error) { return console.error(error); });
     };
@@ -42,6 +43,13 @@ var TestRail = /** @class */ (function () {
     };
     TestRail.prototype.publishResults = function (results) {
         var _this = this;
+        if (this.options.createTestRun == "false") {
+            this.runId = this.options.runId;
+        }
+        if (typeof this.runId === "undefined") {
+            console.error("runId is undefined.");
+            return;
+        }
         axios({
             method: 'post',
             url: this.base + "/add_results_for_cases/" + this.runId,
@@ -51,12 +59,12 @@ var TestRail = /** @class */ (function () {
                 password: this.options.password,
             },
             data: JSON.stringify({ results: results }),
-        })
-            .then(function (response) {
-            console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
-            console.log('\n', " - Results are published to " + chalk.magenta("https://" + _this.options.domain + "/index.php?/runs/view/" + _this.runId), '\n');
-        })
-            .catch(function (error) { return console.error(error); });
+        }).then(function (response) {
+            if (response.status == 200) {
+                console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
+                console.log('\n', " - Results are published to " + chalk.magenta("https://" + this.options.domain + "/index.php?/runs/view/" + this.runId), '\n');
+            }
+        }).catch(function (error) { return console.error(error); });
     };
     return TestRail;
 }());

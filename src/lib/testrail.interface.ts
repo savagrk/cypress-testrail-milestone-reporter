@@ -4,6 +4,8 @@ export interface TestRailOptions {
   password: string;
   projectId: number;
   suiteId: number;
+  createTestRun: string;
+  runId: number;
   assignedToId?: number;
 }
 
