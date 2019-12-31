@@ -4,7 +4,11 @@
   "description": "A Testrail reporter for cypress including TestRail API basic library",
   "main": "index.js",
   "private": false,
-  "keywords": ["cypress", "testrail", "reporter"],
+  "keywords": [
+    "cypress",
+    "testrail",
+    "reporter"
+  ],
   "author": {
     "name": "Sava Grkovic",
     "email": "sava.grkovic@gmail.com"
@@ -34,7 +38,7 @@
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.36",
-    "@types/node": "^6.0.58",
+    "@types/node": "^6.14.9",
     "chai": "^3.5.0",
     "rimraf": "^2.5.4",
     "typescript": "^2.1.4"
