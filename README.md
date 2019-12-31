@@ -53,8 +53,7 @@ it("Can authenticate a valid userC123", ...
 
 **projectId**: _number_ project with which the tests are associated.
 
-**createTestRun**: _boolean_ - **true** if you want to create a new Test Run,
-                             - **false** if you only update results to existed Test Run.
+**createTestRun**: _boolean_ **true** if you want to create a new Test Run,\                            **false** if you only update results to existed Test Run.
 
 **suiteId**: _number_ (optional: required when TestRail project uses multiple test suites to manage cases) suite with which the tests are associated.
 
