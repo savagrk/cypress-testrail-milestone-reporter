@@ -32,16 +32,6 @@ var TestRail = /** @class */ (function () {
             .catch(function (error) { return console.error(error); });
     };
     TestRail.prototype.deleteRun = function () {
-
-        if ("runId" in this.options) {
-            this.runId = this.options.runId;
-        }
-      
-        if (typeof this.runId === "undefined") {
-            console.error("runId is undefined.")
-            return
-        }
-
         axios({
             method: 'post',
             url: this.base + "/delete_run/" + this.runId,
@@ -53,16 +43,14 @@ var TestRail = /** @class */ (function () {
         }).catch(function (error) { return console.error(error); });
     };
     TestRail.prototype.publishResults = function (results) {
-
-        if ("runId" in this.options) {
+        var _this = this;
+        if (this.options.createTestRun == "false") {
             this.runId = this.options.runId;
         }
-      
         if (typeof this.runId === "undefined") {
-            console.error("runId is undefined.")
-            return
+            console.error("runId is undefined.");
+            return;
         }
-
         axios({
             method: 'post',
             url: this.base + "/add_results_for_cases/" + this.runId,
