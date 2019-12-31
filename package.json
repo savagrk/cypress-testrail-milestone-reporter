@@ -1,22 +1,26 @@
 {
-  "name": "cypress-testrail-reporter",
-  "version": "1.1.0",
+  "name": "cypress-testrail-reporter-screenshot",
+  "version": "2.0.0",
   "description": "A Testrail reporter for cypress including TestRail API basic library",
   "main": "index.js",
   "private": false,
-  "keywords": ["cypress", "testrail", "reporter"],
+  "keywords": [
+    "cypress",
+    "testrail",
+    "reporter"
+  ],
   "author": {
-    "name": "Milutin Savovic",
-    "email": "mickosavovic@gmail.com"
+    "name": "Sava Grkovic",
+    "email": "sava.grkovic@gmail.com"
   },
   "license": "MIT",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vivify-Ideas/cypress-testrail-reporter.git"
+    "url": "https://github.com/savagrk/cypress-testrail-reporter-screenshot.git"
   },
   "bugs": {
-    "url": "https://github.com/Vivify-Ideas/cypress-testrail-reporter/issues"
+    "url": "https://github.com/savagrk/cypress-testrail-reporter-screenshot/issues"
   },
   "scripts": {
     "tsc": "tsc",
@@ -27,13 +31,14 @@
     "axios": "^0.18.0",
     "btoa": "^1.1.2",
     "chalk": "^2.4.1",
+    "deasync": "^0.1.15",
     "mocha": "^2.2.5",
     "moment": "^2.22.1"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.36",
-    "@types/node": "^6.0.58",
+    "@types/node": "^6.14.9",
     "chai": "^3.5.0",
     "rimraf": "^2.5.4",
     "typescript": "^2.1.4"
