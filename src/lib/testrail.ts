@@ -35,6 +35,16 @@ export class TestRail {
   }
 
   public deleteRun() {
+    
+    if ("runId" in this.options) {
+      this.runId = this.options.runId;
+    }
+
+    if (typeof this.runId === "undefined") {
+      console.error("runId is undefined.")
+      return
+    }
+
     axios({
       method: 'post',
       url: `${this.base}/delete_run/${this.runId}`,
@@ -48,7 +58,7 @@ export class TestRail {
 
   public publishResults(results: TestRailResult[]) {
 
-    if (this.options.createTestRun == "false") {
+    if ("runId" in this.options) {
       this.runId = this.options.runId;
     }
 

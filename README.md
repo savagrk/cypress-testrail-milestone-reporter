@@ -26,7 +26,6 @@ Add reporter to your `cypress.json`:
   "projectId": "projectIdNumber",
   "milestoneId": "milestoneIdNumber",
   "suiteId": "suiteIdNumber",
-  "createTestRun": "boolean",
   "runName": "testRunName",
   "runId": "testRunIdNumber"
 }
@@ -58,11 +57,9 @@ it("Can authenticate a valid userC123", ...
 
 **suiteId**: _number_ (optional: required when TestRail project uses multiple test suites to manage cases) suite with which the tests are associated.
 
-**createTestRun**: _boolean_ **true** if you want to create a new Test Run, **false** if you only update results to existed Test Run.
+**runId**: _number_ (optional: required when when don't want to create new test run) Test Run id.
 
-**runName**: _string_ (optional: required when **createTestRun** = **true**) name of the Testrail run.
-
-**runId**: _number_ (optional: required when **createTestRun** = **false**) Test Run id.
+**runName**: _string_ (optional: required when **runId** is not set) name of the Testrail run.
 
 ## TestRail Settings
 
@@ -85,6 +82,5 @@ This project is licensed under the [MIT license](/LICENSE.md).
 ## Acknowledgments
 
 * [Milutin Savovic](https://github.com/mickosav), author of the [cypress-testrail-reporter](https://github.com/Vivify-Ideas/cypress-testrail-reporter) repository that was forked.
-* [NGUYEN Viet](https://github.com/vietnq254), author of the [hanoi-cypress-testrail-reporter](https://github.com/vietnq254/hanoi-cypress-testrail-reporter) repository that was cloned.
 * [Pierre Awaragi](https://github.com/awaragi), owner of the [mocha-testrail-reporter](https://github.com/awaragi/mocha-testrail-reporter) repository that was forked.
 * [Valerie Thoma](https://github.com/ValerieThoma) and [Aileen Santos](https://github.com/asantos3026) for proofreading the README.md file and making it more understandable.

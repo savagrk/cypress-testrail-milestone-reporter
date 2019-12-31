@@ -5,7 +5,6 @@ export interface TestRailOptions {
   projectId: number;
   milestoneId: number;
   suiteId: number;
-  createTestRun: string;
   runId: number;
   assignedToId?: number;
 }
