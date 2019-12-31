@@ -20,13 +20,14 @@ export class CypressTestRailReporter extends reporters.Spec {
     this.validate(reporterOptions, 'projectId');
     this.validate(reporterOptions, 'milestoneId');
     this.validate(reporterOptions, 'suiteId');
+    this.validate(reporterOptions, 'createTestRun');
 
     runner.on('start', () => {
       const executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
       const name = `${reporterOptions.runName || 'Automated test run'} ${executionDateTime}`;
       const description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
       
-      if (!("runId" in reporterOptions)) {
+      if (reporterOptions.createTestRun == "true") {
         this.testRail.createRun(name, description);
       }
     });
