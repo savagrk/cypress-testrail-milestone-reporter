@@ -28,7 +28,9 @@ Add reporter to your `cypress.json`:
   "suiteId": "suiteIdNumber",
   "createTestRun": "boolean",
   "runName": "testRunName",
-  "runId": "testRunIdNumber"
+  "runId": "testRunIdNumber",
+  "addScreenshot": "boolean",
+  "addVideo": "boolean",
 }
 ```
 
@@ -63,6 +65,10 @@ it("Can authenticate a valid userC123", ...
 **runName**: _string_ (optional: required when **createTestRun** = **true**) name of the Testrail run.
 
 **runId**: _number_ (optional: required when **createTestRun** = **false**) Test Run id.
+
+**addScreenshot**: _boolean_ **true** if you want to add screenshot to Test Run, **false** if you don't want to add screenshot to Test Run.
+
+**addVideo**: _boolean_ **true** if you want to add video to Test Run, **false** if you don't want to add video to Test Run.
 
 ## TestRail Settings
 

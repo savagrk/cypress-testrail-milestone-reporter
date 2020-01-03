@@ -3,11 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios = require('axios');
 var chalk = require('chalk');
 var deasync = require('deasync');
+var fs = require('fs');
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
         this.base = "https://" + options.domain + "/index.php?/api/v2";
+        //  urls need to be properly defined
+        //  var filename = __dirname+req.url;
+        this.screenshot = 'screenshots' + 'cypress';
+        this.video = 'videos' + 'cypress';
         this.res = undefined;
+        this.resultId = 0;
     }
     TestRail.prototype.createRun = function (name, description) {
         var _this = this;
@@ -35,7 +41,7 @@ var TestRail = /** @class */ (function () {
     };
     TestRail.prototype.deleteRun = function () {
 
-        if (this.options.createTestRun == "false") {
+        if (!(this.options.createTestRun)) {
             this.runId = this.options.runId;
         }
         if (typeof this.runId === "undefined") {
@@ -61,7 +67,7 @@ var TestRail = /** @class */ (function () {
     };
     TestRail.prototype.publishResults = function (results) {
         var _this = this;
-        if (this.options.createTestRun == "false") {
+        if (!(this.options.createTestRun)) {
             this.runId = this.options.runId;
         }
         if (typeof this.runId === "undefined") {
@@ -80,12 +86,72 @@ var TestRail = /** @class */ (function () {
         }).then(function (response) {
             _this.res = response;
             if (response.status == 200) {
+                this.resultId = response.id;
                 console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
                 console.log('\n', " - Results are published to " + chalk.magenta("https://" + this.options.domain + "/index.php?/runs/view/" + this.runId), '\n');
             }
         }).catch(function (error) { return console.error(error); });
 
-        this.waitResponse(5000);
+        if (this.options.addScreenshot) {
+
+            this.waitResponse(5000)
+      
+            axios({
+              method: 'post',
+              url: `${this.base}/add_attachment_to_result/${this.resultId}`,
+              headers: { 'Content-Type': 'multipart/form-data' },
+              auth: {
+                username: this.options.username,
+                password: this.options.password,
+              },
+              formData: { attachment: [fs.createReadStream(this.screenshot)] },
+            })
+              .then(response => {
+                this.res = response;
+                if(response.status == 200){
+                  console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
+                  console.log(
+                    '\n',
+                    ` - Screenshots are published to ${chalk.magenta(
+                      `https://${this.options.domain}/index.php?/runs/view/${this.runId}`
+                      )}`,
+                    '\n'
+                  );
+                }
+              })
+              .catch(error => console.error(error));
+      
+          }
+      
+          if (this.options.addVideo) {
+      
+            this.waitResponse(5000)
+          
+            axios({
+              method: 'post',
+              url: `${this.base}/add_attachment_to_result/${this.resultId}`,
+              headers: { 'Content-Type': 'multipart/form-data' },
+              auth: {
+                username: this.options.username,
+                password: this.options.password,
+              },
+              formData: { attachment: [fs.createReadStream(this.video)] },
+            })
+              .then(response => {
+                this.res = response;
+                if(response.status == 200){
+                  console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
+                  console.log(
+                    '\n',
+                    ` - Videos are published to ${chalk.magenta(
+                      `https://${this.options.domain}/index.php?/runs/view/${this.runId}`
+                      )}`,
+                    '\n'
+                  );
+                }
+              })
+              .catch(error => console.error(error));
+          }
 
     };
     return TestRail;
