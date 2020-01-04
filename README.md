@@ -26,11 +26,11 @@ Add reporter to your `cypress.json`:
   "projectId": "projectIdNumber",
   "milestoneId": "milestoneIdNumber",
   "suiteId": "suiteIdNumber",
-  "createTestRun": "boolean",
+  "createTestRun": "createTestRunFlag",
   "runName": "testRunName",
   "runId": "testRunIdNumber",
-  "addScreenshot": "boolean",
-  "addVideo": "boolean",
+  "addScreenshot": "addScreenshotFlag",
+  "addVideo": "addVideoFlag",
 }
 ```
 
@@ -60,15 +60,15 @@ it("Can authenticate a valid userC123", ...
 
 **suiteId**: _number_ (optional: required when TestRail project uses multiple test suites to manage cases) suite with which the tests are associated.
 
-**createTestRun**: _boolean_ **true** if you want to create a new Test Run, **false** if you only update results to existed Test Run.
+**createTestRun**: _string_ **true** if you want to create a new Test Run, **false** if you only update results to existed Test Run.
 
 **runName**: _string_ (optional: required when **createTestRun** = **true**) name of the Testrail run.
 
 **runId**: _number_ (optional: required when **createTestRun** = **false**) Test Run id.
 
-**addScreenshot**: _boolean_ **true** if you want to add screenshot to Test Run, **false** if you don't want to add screenshot to Test Run.
+**addScreenshot**: _string_ **true** if you want to add screenshot to Test Run, **false** if you don't want to add screenshot to Test Run.
 
-**addVideo**: _boolean_ **true** if you want to add video to Test Run, **false** if you don't want to add video to Test Run.
+**addVideo**: _string_ **true** if you want to add video to Test Run, **false** if you don't want to add video to Test Run.
 
 ## TestRail Settings
 
