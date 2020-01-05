@@ -16,8 +16,8 @@ export class TestRail {
     this.base = `https://${options.domain}/index.php?/api/v2`;
     //  urls need to be properly defined
     //  var filename = __dirname+req.url;
-    this.screenshot = 'screenshots' + 'cypress';
-    this.video = 'videos' + 'cypress';
+    this.screenshot = 'tmp/cypress/screenshots';
+    this.video = 'tmp/cypress/videos';
     this.res = undefined;
     this.resultId = 0;
   }
@@ -112,7 +112,7 @@ export class TestRail {
       })
       .catch(error => console.error(error));
 
-    if (this.options.addScreenshot) {
+    if (this.options.addScreenshot == 'true') {
 
       this.waitResponse(5000)
 
@@ -143,7 +143,7 @@ export class TestRail {
 
     }
 
-    if (this.options.addVideo) {
+    if (this.options.addVideo == 'true') {
 
       this.waitResponse(5000)
     

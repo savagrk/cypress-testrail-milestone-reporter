@@ -41,7 +41,7 @@ var TestRail = /** @class */ (function () {
     };
     TestRail.prototype.deleteRun = function () {
 
-        if (!(this.options.createTestRun)) {
+        if (this.options.createTestRun == 'false') {
             this.runId = this.options.runId;
         }
         if (typeof this.runId === "undefined") {
@@ -92,7 +92,7 @@ var TestRail = /** @class */ (function () {
             }
         }).catch(function (error) { return console.error(error); });
 
-        if (this.options.addScreenshot) {
+        if (this.options.addScreenshot == 'true') {
 
             this.waitResponse(5000)
       
@@ -123,7 +123,7 @@ var TestRail = /** @class */ (function () {
       
           }
       
-          if (this.options.addVideo) {
+          if (this.options.addVideo == 'true') {
       
             this.waitResponse(5000)
           
