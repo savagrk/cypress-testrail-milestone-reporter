@@ -4,47 +4,48 @@ var axios = require('axios');
 var chalk = require('chalk');
 var deasync = require('deasync');
 var fs = require('fs');
+
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
         this.base = "https://" + options.domain + "/index.php?/api/v2";
         //  urls need to be properly defined
         //  var filename = __dirname+req.url;
-        this.screenshot = 'screenshots' + 'cypress';
+        this.screenshot = '';
         this.video = 'videos' + 'cypress';
-        this.res = undefined;
-        this.resultId = 0;
     }
+
     TestRail.prototype.createRun = function (name, description) {
-        var _this = this;
-        axios({
-            method: 'post',
-            url: this.base + "/add_run/" + this.options.projectId,
-            headers: { 'Content-Type': 'application/json' },
-            auth: {
-                username: this.options.username,
-                password: this.options.password,
-            },
-            data: JSON.stringify({
-                suite_id: this.options.suiteId,
-                name: name,
-                description: description,
-                milestone_id: this.options.milestoneId,
-                include_all: true,
-            }),
+      var _this = this
+
+      axios({
+          method: 'post',
+          url: this.base + "/add_run/" + this.options.projectId,
+          headers: { 'Content-Type': 'application/json' },
+          auth: {
+              username: this.options.username,
+              password: this.options.password,
+          },
+          data: JSON.stringify({
+              suite_id: this.options.suiteId,
+              name: name,
+              description: description,
+              milestone_id: this.options.milestoneId,
+              include_all: true,
+          }),
+      })
+        .then(function (response) {
+              console.log('\n', 'Creating test run... ---> run id is:  ', response.data.id, '\n');
+              _this.runId = response.data.id;
         })
-            .then(function (response) {
-                console.log('Creating test run... ---> run id is:  ', response.data.id);
-                _this.runId = response.data.id;
-        })
-            .catch(function (error) { return console.error(error); });
+        .catch(function (error) { return console.error(error); });
     };
+
     TestRail.prototype.deleteRun = function () {
 
-        if (this.options.createTestRun == 'false') {
-            this.runId = this.options.runId;
-        }
-        if (typeof this.runId === "undefined") {
+        if (this.options.createTestRun == 'no') {
+            this.runId = this.options.runId
+        } else if (this.runId == 'undefined'){
             console.error("runId is undefined.");
             return;
         }
@@ -59,21 +60,28 @@ var TestRail = /** @class */ (function () {
             },
         }).catch(function (error) { return console.error(error); });
     };
+
     TestRail.prototype.waitResponse = function (delay) {
         if (typeof this.res === "undefined" && delay > 0) {
             deasync.sleep(1000);
             this.waitResponse(delay - 1000);
         }
     };
+
     TestRail.prototype.publishResults = function (results) {
-        var _this = this;
-        if (!(this.options.createTestRun)) {
-            this.runId = this.options.runId;
-        }
-        if (typeof this.runId === "undefined") {
+      var _this = this  
+      var resultsId = [];
+        var domain = this.options.domain
+
+        if (this.options.createTestRun == 'no') {
+            this.runId = this.options.runId
+        } else if (this.runId == 'undefined'){
             console.error("runId is undefined.");
             return;
         }
+
+        var linkId = this.runId
+
         axios({
             method: 'post',
             url: this.base + "/add_results_for_cases/" + this.runId,
@@ -83,22 +91,33 @@ var TestRail = /** @class */ (function () {
                 password: this.options.password,
             },
             data: JSON.stringify({ results: results }),
+
         }).then(function (response) {
-            _this.res = response;
             if (response.status == 200) {
-                this.resultId = response.id;
+                response.data.forEach((data) => {
+                  resultsId.push(data.id)
+                })
+                _this.resultIds = resultsId
+                console.log(_this.resultIds)
                 console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
-                console.log('\n', " - Results are published to " + chalk.magenta("https://" + this.options.domain + "/index.php?/runs/view/" + this.runId), '\n');
+                console.log(
+                  '\n',
+                  ` - Results are published to ${chalk.magenta(
+                    "https://" + domain + "/index.php?/runs/view/" + linkId
+                    )}`,
+                  '\n'
+                );
             }
         }).catch(function (error) { return console.error(error); });
+    };
 
-        if (this.options.addScreenshot == 'true') {
+    TestRail.prototype.addScreenshot = function () {
 
-            this.waitResponse(5000)
+            //this.waitResponse(5000)
       
             axios({
               method: 'post',
-              url: `${this.base}/add_attachment_to_result/${this.resultId}`,
+              url: this.base + "/add_attachment_to_result/" + 31,
               headers: { 'Content-Type': 'multipart/form-data' },
               auth: {
                 username: this.options.username,
@@ -106,8 +125,7 @@ var TestRail = /** @class */ (function () {
               },
               formData: { attachment: [fs.createReadStream(this.screenshot)] },
             })
-              .then(response => {
-                this.res = response;
+              .then(function (response) {
                 if(response.status == 200){
                   console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
                   console.log(
@@ -118,14 +136,13 @@ var TestRail = /** @class */ (function () {
                     '\n'
                   );
                 }
-              })
-              .catch(error => console.error(error));
+            }).catch(function (error) { return console.error(error); });
       
-          }
+    };
       
-          if (this.options.addVideo == 'true') {
+    TestRail.prototype.addVideo = function () {
       
-            this.waitResponse(5000)
+            //this.waitResponse(5000)
           
             axios({
               method: 'post',
@@ -137,8 +154,7 @@ var TestRail = /** @class */ (function () {
               },
               formData: { attachment: [fs.createReadStream(this.video)] },
             })
-              .then(response => {
-                this.res = response;
+              .then(function (response) {
                 if(response.status == 200){
                   console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
                   console.log(
@@ -149,12 +165,10 @@ var TestRail = /** @class */ (function () {
                     '\n'
                   );
                 }
-              })
-              .catch(error => console.error(error));
-          }
+              }).catch(function (error) { return console.error(error); });
 
     };
     return TestRail;
-}());
+  }());
 exports.TestRail = TestRail;
 //# sourceMappingURL=testrail.js.map
