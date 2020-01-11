@@ -30,12 +30,22 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'milestoneId');
         _this.validate(reporterOptions, 'suiteId');
         _this.validate(reporterOptions, 'createTestRun');
+
         runner.on('start', function () {
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
             var name = (reporterOptions.runName || 'Automated test run') + " " + executionDateTime;
             var description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
-            _this.testRail.createRun(name, description);
+
+            if (reporterOptions.createTestRun == 'yes') {
+                _this.testRail.createRun(name, description);
+            } else if (reporterOptions.createTestRun == 'no'){
+                console.info('\n', "Results will be published to already existing Test Run with ID Number: " + reporterOptions.runId, '\n');
+            } else {
+                console.error('\n', "Please use valid string values for createTestRun option!", '\n');
+                return;
+            }
         });
+
         runner.on('pass', function (test) {
             var caseIds = shared_1.titleToCaseIds(test.title);
             if (caseIds.length > 0) {
@@ -50,6 +60,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             }
             var _a;
         });
+
         runner.on('fail', function (test) {
             var caseIds = shared_1.titleToCaseIds(test.title);
             if (caseIds.length > 0) {
@@ -64,6 +75,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             }
             var _a;
         });
+        
         runner.on('end', function () {
             if (_this.results.length == 0) {
                 console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
@@ -72,9 +84,16 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                 return;
             }
             _this.testRail.publishResults(_this.results);
+            if (reporterOptions.addScreenshot == 'yes') {
+                _this.testRail.addScreenshot();
+            }
+            if (reporterOptions.addVideo == 'yes') {
+                _this.testRail.addVideo();
+            }
         });
         return _this;
     }
+
     CypressTestRailReporter.prototype.validate = function (options, name) {
         if (options == null) {
             throw new Error('Missing reporterOptions in cypress.json');

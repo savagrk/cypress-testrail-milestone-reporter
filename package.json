@@ -1,32 +1,36 @@
 {
-  "name": "cypress-testrail-reporter-screenshot",
-  "version": "2.0.0",
-  "description": "A Testrail reporter for cypress including TestRail API basic library",
-  "main": "index.js",
-  "private": false,
-  "keywords": [
-    "cypress",
-    "testrail",
-    "reporter"
+  "_from": "cypress-testrail-screenshot-reporter",
+  "_id": "cypress-testrail-screenshot-reporter@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-JpXx4Y4/4AI/p55BqouSgBj36bLSP8Qegj7WKTUxEEEyoJEdCZKVWs6hggGo+X7eM2HAWiN5GILjemdzbNjmow==",
+  "_location": "/cypress-testrail-screenshot-reporter",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cypress-testrail-screenshot-reporter",
+    "name": "cypress-testrail-screenshot-reporter",
+    "escapedName": "cypress-testrail-screenshot-reporter",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
+  "_resolved": "https://registry.npmjs.org/cypress-testrail-screenshot-reporter/-/cypress-testrail-screenshot-reporter-3.0.0.tgz",
+  "_shasum": "0588bd135a7a1693ec77f1b587e566f299824784",
+  "_spec": "cypress-testrail-screenshot-reporter",
+  "_where": "/Users/sava.grkovic/debug",
   "author": {
     "name": "Sava Grkovic",
     "email": "sava.grkovic@gmail.com"
   },
-  "license": "MIT",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/savagrk/cypress-testrail-reporter-screenshot.git"
-  },
   "bugs": {
-    "url": "https://github.com/savagrk/cypress-testrail-reporter-screenshot/issues"
+    "url": "https://github.com/savagrk/cypress-testrail-screenshot-reporter/issues"
   },
-  "scripts": {
-    "tsc": "tsc",
-    "clean": "rimraf dist",
-    "build": "npm run clean && npm run tsc"
-  },
+  "bundleDependencies": false,
   "dependencies": {
     "axios": "^0.18.0",
     "btoa": "^1.1.2",
@@ -35,6 +39,8 @@
     "mocha": "^2.2.5",
     "moment": "^2.22.1"
   },
+  "deprecated": false,
+  "description": "A Testrail reporter for cypress including TestRail API basic library",
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.36",
@@ -42,5 +48,25 @@
     "chai": "^3.5.0",
     "rimraf": "^2.5.4",
     "typescript": "^2.1.4"
-  }
+  },
+  "homepage": "https://github.com/savagrk/cypress-testrail-screenshot-reporter#readme",
+  "keywords": [
+    "cypress",
+    "testrail",
+    "reporter"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "cypress-testrail-screenshot-reporter",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savagrk/cypress-testrail-screenshot-reporter.git"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run tsc",
+    "clean": "rimraf dist",
+    "tsc": "tsc"
+  },
+  "version": "3.0.0"
 }
