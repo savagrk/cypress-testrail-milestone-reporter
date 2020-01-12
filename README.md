@@ -1,15 +1,15 @@
 # TestRail Reporter for Cypress
 
-[![version](https://img.shields.io/npm/v/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![downloads](https://img.shields.io/npm/dt/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![MIT License](https://img.shields.io/github/license/Vivify-Ideas/cypress-testrail-reporter.svg)](https://github.com/Vivify-Ideas/cypress-testrail-reporter/blob/master/LICENSE.md)
+[![version](https://img.shields.io/npm/v/cypress-testrail-milestone-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-milestone-reporter)
+[![downloads](https://img.shields.io/npm/dt/cypress-testrail-milestone-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-milestone-reporter)
+[![MIT License](https://img.shields.io/github/license/savagrk/cypress-testrail-milestone-reporter.svg)](https://github.com/savagrk/cypress-testrail-milestone-reporter/blob/master/LICENSE.md)
 
 Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
 ## Install
 
 ```shell
-$ npm install cypress-testrail-screenshot-reporter --save-dev
+$ npm install cypress-testrail-milestone-reporter --save-dev
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ Add reporter to your `cypress.json`:
 
 ```json
 ...
-"reporter": "cypress-testrail-screenshot-reporter",
+"reporter": "cypress-testrail-milestone-reporter",
 "reporterOptions": {
   "domain": "yourdomain.testrail.com",
   "username": "username",
@@ -29,8 +29,6 @@ Add reporter to your `cypress.json`:
   "createTestRun": "createTestRunFlag",
   "runName": "testRunName",
   "runId": "testRunIdNumber",
-  "addScreenshot": "addScreenshotFlag",
-  "addVideo": "addVideoFlag",
 }
 ```
 
@@ -66,9 +64,6 @@ it("Can authenticate a valid userC123", ...
 
 **runId**: _number_ (optional: required when **createTestRun** = **no**) Test Run id.
 
-**addScreenshot**: _string_ **yes** if you want to add screenshot to Test Run, **no** if you don't want to add screenshot to Test Run.
-
-**addVideo**: _string_ **yes** if you want to add video to Test Run, **no** if you don't want to add video to Test Run.
 
 ## TestRail Settings
 

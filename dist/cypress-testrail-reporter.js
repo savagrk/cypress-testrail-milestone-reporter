@@ -16,6 +16,7 @@ var testrail_1 = require("./testrail");
 var shared_1 = require("./shared");
 var testrail_interface_1 = require("./testrail.interface");
 var chalk = require('chalk');
+
 var CypressTestRailReporter = /** @class */ (function (_super) {
     __extends(CypressTestRailReporter, _super);
     function CypressTestRailReporter(runner, options) {
@@ -84,12 +85,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                 return;
             }
             _this.testRail.publishResults(_this.results);
-            if (reporterOptions.addScreenshot == 'yes') {
-                _this.testRail.addScreenshot();
-            }
-            if (reporterOptions.addVideo == 'yes') {
-                _this.testRail.addVideo();
-            }
+
         });
         return _this;
     }

@@ -9,10 +9,6 @@ var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
         this.base = "https://" + options.domain + "/index.php?/api/v2";
-        //  urls need to be properly defined
-        //  var filename = __dirname+req.url;
-        this.screenshot = '';
-        this.video = 'videos' + 'cypress';
     }
 
     TestRail.prototype.createRun = function (name, description) {
@@ -61,13 +57,6 @@ var TestRail = /** @class */ (function () {
         }).catch(function (error) { return console.error(error); });
     };
 
-    TestRail.prototype.waitResponse = function (delay) {
-        if (typeof this.res === "undefined" && delay > 0) {
-            deasync.sleep(1000);
-            this.waitResponse(delay - 1000);
-        }
-    };
-
     TestRail.prototype.publishResults = function (results) {
       var _this = this  
       var resultsId = [];
@@ -111,63 +100,6 @@ var TestRail = /** @class */ (function () {
         }).catch(function (error) { return console.error(error); });
     };
 
-    TestRail.prototype.addScreenshot = function () {
-
-            //this.waitResponse(5000)
-      
-            axios({
-              method: 'post',
-              url: this.base + "/add_attachment_to_result/" + 31,
-              headers: { 'Content-Type': 'multipart/form-data' },
-              auth: {
-                username: this.options.username,
-                password: this.options.password,
-              },
-              formData: { attachment: [fs.createReadStream(this.screenshot)] },
-            })
-              .then(function (response) {
-                if(response.status == 200){
-                  console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
-                  console.log(
-                    '\n',
-                    ` - Screenshots are published to ${chalk.magenta(
-                      `https://${this.options.domain}/index.php?/runs/view/${this.runId}`
-                      )}`,
-                    '\n'
-                  );
-                }
-            }).catch(function (error) { return console.error(error); });
-      
-    };
-      
-    TestRail.prototype.addVideo = function () {
-      
-            //this.waitResponse(5000)
-          
-            axios({
-              method: 'post',
-              url: `${this.base}/add_attachment_to_result/${this.resultId}`,
-              headers: { 'Content-Type': 'multipart/form-data' },
-              auth: {
-                username: this.options.username,
-                password: this.options.password,
-              },
-              formData: { attachment: [fs.createReadStream(this.video)] },
-            })
-              .then(function (response) {
-                if(response.status == 200){
-                  console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
-                  console.log(
-                    '\n',
-                    ` - Videos are published to ${chalk.magenta(
-                      `https://${this.options.domain}/index.php?/runs/view/${this.runId}`
-                      )}`,
-                    '\n'
-                  );
-                }
-              }).catch(function (error) { return console.error(error); });
-
-    };
     return TestRail;
   }());
 exports.TestRail = TestRail;

@@ -1,16 +1,16 @@
 {
-  "_from": "cypress-testrail-screenshot-reporter",
-  "_id": "cypress-testrail-screenshot-reporter@3.0.0",
+  "_from": "cypress-testrail-milestone-reporter",
+  "_id": "cypress-testrail-milestone-reporter@2.0.0",
   "_inBundle": false,
   "_integrity": "sha512-JpXx4Y4/4AI/p55BqouSgBj36bLSP8Qegj7WKTUxEEEyoJEdCZKVWs6hggGo+X7eM2HAWiN5GILjemdzbNjmow==",
-  "_location": "/cypress-testrail-screenshot-reporter",
+  "_location": "/cypress-testrail-milestone-reporter",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "cypress-testrail-screenshot-reporter",
-    "name": "cypress-testrail-screenshot-reporter",
-    "escapedName": "cypress-testrail-screenshot-reporter",
+    "raw": "cypress-testrail-milestone-reporter",
+    "name": "cypress-testrail-milestone-reporter",
+    "escapedName": "cypress-testrail-milestone-reporter",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -19,16 +19,16 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cypress-testrail-screenshot-reporter/-/cypress-testrail-screenshot-reporter-3.0.0.tgz",
+  "_resolved": "https://registry.npmjs.org/cypress-testrail-milestone-reporter/-/cypress-testrail-milestone-reporter-2.0.0.tgz",
   "_shasum": "0588bd135a7a1693ec77f1b587e566f299824784",
-  "_spec": "cypress-testrail-screenshot-reporter",
+  "_spec": "cypress-testrail-milestone-reporter",
   "_where": "/Users/sava.grkovic/debug",
   "author": {
     "name": "Sava Grkovic",
     "email": "sava.grkovic@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/savagrk/cypress-testrail-screenshot-reporter/issues"
+    "url": "https://github.com/savagrk/cypress-testrail-milestone-reporter/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
@@ -49,7 +49,7 @@
     "rimraf": "^2.5.4",
     "typescript": "^2.1.4"
   },
-  "homepage": "https://github.com/savagrk/cypress-testrail-screenshot-reporter#readme",
+  "homepage": "https://github.com/savagrk/cypress-testrail-milestone-reporter#readme",
   "keywords": [
     "cypress",
     "testrail",
@@ -57,16 +57,16 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "cypress-testrail-screenshot-reporter",
+  "name": "cypress-testrail-milestone-reporter",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/savagrk/cypress-testrail-screenshot-reporter.git"
+    "url": "git+https://github.com/savagrk/cypress-testrail-milestone-reporter.git"
   },
   "scripts": {
     "build": "npm run clean && npm run tsc",
     "clean": "rimraf dist",
     "tsc": "tsc"
   },
-  "version": "3.0.0"
+  "version": "2.0.0"
 }
