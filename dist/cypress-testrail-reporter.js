@@ -9,6 +9,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
 Object.defineProperty(exports, "__esModule", { value: true });
 var mocha_1 = require("mocha");
 var moment = require("moment");
@@ -98,7 +99,10 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             throw new Error("Missing " + name + " value. Please update reporterOptions in cypress.json");
         }
     };
+
     return CypressTestRailReporter;
+
 }(mocha_1.reporters.Spec));
+
 exports.CypressTestRailReporter = CypressTestRailReporter;
 //# sourceMappingURL=cypress-testrail-reporter.js.map
