@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios = require('axios');
 var chalk = require('chalk');
-var deasync = require('deasync');
-var fs = require('fs');
 
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
@@ -58,8 +56,7 @@ var TestRail = /** @class */ (function () {
     };
 
     TestRail.prototype.publishResults = function (results) {
-      var _this = this  
-      var resultsId = [];
+
         var domain = this.options.domain
 
         if (this.options.createTestRun == 'no') {
@@ -83,11 +80,6 @@ var TestRail = /** @class */ (function () {
 
         }).then(function (response) {
             if (response.status == 200) {
-                response.data.forEach((data) => {
-                  resultsId.push(data.id)
-                })
-                _this.resultIds = resultsId
-                console.log(_this.resultIds)
                 console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
                 console.log(
                   '\n',

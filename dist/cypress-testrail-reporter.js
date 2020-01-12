@@ -54,7 +54,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Passed,
-                        comment: "Execution time: " + test.duration + "ms",
+                        comment: "Test was marked as PASSED by Cypress Automation Framework!" + "\n\n" + "Execution time: " + test.duration + " ms",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
@@ -69,7 +69,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Failed,
-                        comment: "" + test.err.message,
+                        comment: "Test was marked as FAILED by Cypress Automation Framework!" + "\n\n" + "ERROR MESSAGE:" + "\n" + test.err.message + "\n",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
