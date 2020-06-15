@@ -33,6 +33,8 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'suiteId');
         _this.validate(reporterOptions, 'createTestRun');
 
+        var artifacts = (reporterOptions.artifactsURL || 'TEST ARTIFACT URL NOT PROVIDED');
+
         runner.on('start', function () {
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
             var name = (reporterOptions.runName || 'Automated test run') + " " + executionDateTime;
@@ -55,7 +57,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Passed,
-                        comment: "Test was marked as PASSED by Cypress Automation Framework!" + "\n\n" + "Execution time: " + test.duration + " ms",
+                        comment: "Test was marked as PASSED by Cypress Automation Framework!" + "\n\n" + "Execution time: " + test.duration + " ms" + "\n\n" + "Screenshot and Video location:" + "\n" + artifacts + "\n",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
@@ -70,7 +72,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Failed,
-                        comment: "Test was marked as FAILED by Cypress Automation Framework!" + "\n\n" + "ERROR MESSAGE:" + "\n" + test.err.message + "\n",
+                        comment: "Test was marked as FAILED by Cypress Automation Framework!" + "\n\n" + "ERROR MESSAGE:" + "\n" + test.err.message + "\n\n" + "Screenshot and Video location:" + "\n" + artifacts + "\n",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
