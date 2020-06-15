@@ -65,7 +65,7 @@ it("Can authenticate a valid userC123", ...
 
 **runId**: _number_ (optional: required when **createTestRun** = **no**) Test Run id.
 
-**artifactsURL**: _string_ (optional) location of uploaded Test Video and Screenshot files.
+**artifactsURL**: _string_ (optional) location of manually uploaded Test Video and Screenshot files.
 
 
 ## TestRail Settings
