@@ -29,6 +29,7 @@ Add reporter to your `cypress.json`:
   "createTestRun": "createTestRunFlag",
   "runName": "testRunName",
   "runId": "testRunIdNumber",
+  "artifactsURL": "uploadedArtifactsLocation"
 }
 ```
 
@@ -63,6 +64,8 @@ it("Can authenticate a valid userC123", ...
 **runName**: _string_ (optional: required when **createTestRun** = **yes**) name of the Testrail run.
 
 **runId**: _number_ (optional: required when **createTestRun** = **no**) Test Run id.
+
+**artifactsURL**: _string_ (optional) location of uploaded Test Video and Screenshot files.
 
 
 ## TestRail Settings
