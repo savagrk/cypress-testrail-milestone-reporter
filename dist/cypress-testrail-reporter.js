@@ -57,7 +57,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Passed,
-                        comment: "Test was marked as PASSED by Cypress Automation Framework!" + "\n\n" + "Execution time: " + test.duration + " ms" + "\n\n" + "Screenshots and Video location:" + "\n" + artifacts + "\n",
+                        comment: "Test was marked as PASSED by Cypress Automation Framework!" + "\n\n" + "Execution time: " + test.duration + " ms" + "\n\n" + "Test Recording location:" + "\n" + artifacts + "\n",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
@@ -72,7 +72,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Failed,
-                        comment: "Test was marked as FAILED by Cypress Automation Framework!" + "\n\n" + "ERROR MESSAGE:" + "\n" + test.err.message + "\n\n" + "Screenshots and Video location:" + "\n" + artifacts + "\n",
+                        comment: "Test was marked as FAILED by Cypress Automation Framework!" + "\n\n" + "ERROR MESSAGE:" + "\n" + test.err.message + "\n\n" + "Test Recording location:" + "\n" + artifacts + "\n",
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
