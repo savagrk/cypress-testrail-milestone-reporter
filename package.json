@@ -36,14 +36,14 @@
     "btoa": "^1.1.2",
     "chalk": "^2.4.1",
     "deasync": "^0.1.15",
-    "mocha": "^2.2.5",
+    "mocha": "7.2.0",
     "moment": "^2.22.1"
   },
   "deprecated": false,
   "description": "A Testrail reporter for cypress including TestRail API basic library",
   "devDependencies": {
     "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.36",
+    "@types/mocha": "^8.0.3",
     "@types/node": "^6.14.9",
     "chai": "^3.5.0",
     "rimraf": "^2.5.4",
