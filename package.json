@@ -1,6 +1,6 @@
 {
   "_from": "cypress-testrail-milestone-reporter",
-  "_id": "cypress-testrail-milestone-reporter@2.10.0",
+  "_id": "cypress-testrail-milestone-reporter@2.1.0",
   "_inBundle": false,
   "_integrity": "sha512-JpXx4Y4/4AI/p55BqouSgBj36bLSP8Qegj7WKTUxEEEyoJEdCZKVWs6hggGo+X7eM2HAWiN5GILjemdzbNjmow==",
   "_location": "/cypress-testrail-milestone-reporter",
@@ -19,7 +19,7 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cypress-testrail-milestone-reporter/-/cypress-testrail-milestone-reporter-2.10.0.tgz",
+  "_resolved": "https://registry.npmjs.org/cypress-testrail-milestone-reporter/-/cypress-testrail-milestone-reporter-2.1.0.tgz",
   "_shasum": "0588bd135a7a1693ec77f1b587e566f299824784",
   "_spec": "cypress-testrail-milestone-reporter",
   "_where": "/Users/sava.grkovic/debug",
@@ -68,5 +68,5 @@
     "clean": "rimraf dist",
     "tsc": "tsc"
   },
-  "version": "2.10.0"
+  "version": "2.1.0"
 }
